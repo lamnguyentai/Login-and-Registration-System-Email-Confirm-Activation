@@ -225,10 +225,10 @@ if(email_exists($email)){
 
 
  		$subject = "Activate Account";
- 		$smg = "Please click the link below to activate your Account http://nguyentailam/login/activate.php?email=$email&code=$validation_code";
+ 		$msg = "Please click the link below to activate your Account http://nguyentailam.tonkotsu.jp/login/activate.php?email=$email&code=$validation_code";
 
 
- 			$headers = "From :noreply@nguyentailam.com";
+ 			$headers = "From: info@nguyentailam.tonkotsu.jp";
 
 
  			send_email($email, $subject, $msg, $headers);
@@ -400,7 +400,7 @@ if(isset($_SESSION['email']) || isset($_COOKIE['email'])){
 
 function recover_password(){
 
-	if($_SERVER['REQUEST_METHOD'] == "POST"){
+	if(isset($_POST['recover_submit']) && !empty($_POST['email'])){
 
 		if(isset($_SESSION['token']) && $_POST['token'] === $_SESSION['token']){
 
@@ -419,8 +419,8 @@ function recover_password(){
 
 		$subject = "Please reset your password";
 		$message = " Here is your password reset code: {$validation_code}
-			Click here to reset your password http://localhost/code.php?email=$email&code=$validation_code ";
-		$headers = "From noreply@yourwebsite.com";
+			Click here to reset your password http://nguyentailam.tonkotsu.jp/login/code.php?email=$email&code=$validation_code ";
+		$headers = "From: info@nguyentailam.tonkotsu.jp";
 
 			if(!send_email($email, $subject, $message, $headers)){
 
@@ -440,7 +440,19 @@ function recover_password(){
 		}
 		
 
-}
+
+	
+} else if(isset($_POST['cancel_submit'])){
+			redirect("login.php");
+
+	} else {
+
+		
+
+	}
+
+
+
 }
 
 

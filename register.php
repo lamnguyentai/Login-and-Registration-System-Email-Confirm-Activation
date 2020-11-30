@@ -16,14 +16,7 @@
       <ul class="nav navbar-nav">
 
         <li><a href="index.php">Home</a></li>
- 
-      </ul>
-
-
-      
-	  <ul class="nav navbar-nav navbar-right">
-        
-        <li ><a href="logout.php">Logout</a></li>
+        <li><a href="login.php">Login</a></li>
  
       </ul>
 

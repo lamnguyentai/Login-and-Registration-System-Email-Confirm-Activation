@@ -17,16 +17,16 @@
 							<form id="register-form"  method="post" role="form" autocomplete="off">
 								<div class="form-group">
 									<label for="email">Email Address</label>
-									<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" autocomplete="off" required />
+									<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" autocomplete="off" />
 								</div>
 								<div class="form-group">
 									<div class="row">
 
 										<div class="col-lg-6 col-sm-6 col-xs-6">
-											<input type="submit" name="cancel-submit" id="cencel-submit" tabindex="2" class="form-control btn btn-danger" value="Cancel" />
+											<input type="submit" name="cancel_submit" id="cancel-submit" tabindex="2" class="form-control btn btn-danger" value="Cancel" />
 										</div>
 										<div class="col-lg-6 col-sm-6 col-xs-6">
-											<input type="submit" name="recover-submit" id="recover-submit" tabindex="2" class="form-control btn btn-success" value="Send Password Reset Link" />
+											<input type="submit" name="recover_submit" id="recover-submit" tabindex="2" class="form-control btn btn-success" value="Send Password Reset Link" />
 										</div>
 
 										
