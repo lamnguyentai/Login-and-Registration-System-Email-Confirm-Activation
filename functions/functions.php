@@ -404,7 +404,7 @@ function recover_password(){
 
 		if(isset($_SESSION['token']) && $_POST['token'] === $_SESSION['token']){
 
-		$email   = escape($_POST['email']);
+		$email  = escape($_POST['email']);
 
 
 		if(email_exists($_POST['email'])){
@@ -422,32 +422,25 @@ function recover_password(){
 			Click here to reset your password http://nguyentailam.tonkotsu.jp/login/code.php?email=$email&code=$validation_code ";
 		$headers = "From: info@nguyentailam.tonkotsu.jp";
 
-			if(!send_email($email, $subject, $message, $headers)){
-
-				validation_errors("Email could not be sent!");
-
-
-			}
-		} else {
-
-			set_message("<p class='bg-success text-center'>Please check spam folder for a password reset code</p>");
-			redirect("index.php");
-		}
-
-		} else {
-
-			redirect("index.php"); 
-		}
+		send_email($email, $subject, $message, $headers);
+				
+		set_message("<p class='bg-success text-center'>Please check spam folder for a password reset code</p>");
+		redirect("index.php");
 		
+		} else {
 
+		set_message("<p class='bg-success text-center'>Please check spam folder for a password reset code</p>");
+		redirect("index.php");
+
+		}
+	}
 
 	
-} else if(isset($_POST['cancel_submit'])){
+	} else if(isset($_POST['cancel_submit'])){
 			redirect("login.php");
 
 	} else {
 
-		
 
 	}
 
