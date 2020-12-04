@@ -2,7 +2,6 @@
 <?php
 
 
-
 /*******************Helper Functions************************/
 
 
@@ -17,7 +16,7 @@ function clean($string){
 function redirect($location){
 
 	return header("Location: {$location}");
-
+	exit();
 }
 
 
@@ -424,13 +423,14 @@ function recover_password(){
 
 		send_email($email, $subject, $message, $headers);
 				
-		set_message("<p class='bg-success text-center'>Please check spam folder for a password reset code</p>");
-		redirect("index.php");
 		
+		redirect("index.php");
+		echo "<p class='bg-success text-center'>Please check spam folder for a password reset code</p>";
 		} else {
 
-		set_message("<p class='bg-success text-center'>Please check spam folder for a password reset code</p>");
+		
 		redirect("index.php");
+		echo "<p class='bg-success text-center'>Please check spam folder for a password reset code</p>";
 
 		}
 	}
