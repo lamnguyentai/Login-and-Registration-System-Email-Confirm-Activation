@@ -1,0 +1,42 @@
+$(function() {
+  var favoriteButton = '[data-favorite-button-selector]';
+  var maxFavoriteProductsCount = 20;
+  var favoriteProducts = Cookies.getJSON('favorite_products');
+  // Cookie未登録の場合でも、配列にしておく (Cookieの追加に、配列メソッドを使うため)
+  if (favoriteProducts === undefined) {
+    favoriteProducts = [];
+  }
+
+  // お気に入り追加済みの商品に、お気に入り済みのクラスを当てる
+  render();
+  $('body').on('click', favoriteButton, function() {
+    var productId = $(this).attr('data-product-id');
+
+    if (favoriteProducts.indexOf(productId) === -1) {
+      // お気に入りの登録上限を超えたら、古いものを削除してから登録する
+      if (favoriteProducts.length >= maxFavoriteProductsCount) {
+        favoriteProducts.splice(-1, 1);
+      }
+      favoriteProducts.unshift(productId);
+    } else {
+      favoriteProducts.splice(favoriteProducts.indexOf(productId), 1);
+    }
+
+    render();
+    Cookies.set('favorite_products', favoriteProducts, { expires: 365 });
+  });
+
+  // お気に入り登録済みクラスの追加・削除
+  function render() {
+    $(favoriteButton).each(function() {
+      var addedClass = $(this).attr('data-added-class');
+
+      if (favoriteProducts.indexOf($(this).attr('data-product-id')) !== -1) {
+        $(this).addClass(addedClass);
+      } else {
+        $(this).removeClass(addedClass);
+      }
+    });
+  }
+
+});

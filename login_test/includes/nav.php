@@ -23,9 +23,20 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="login.php">ログイン</a>
-      </li>
+
+      <?php if(logged_in()){
+
+echo '<li class="nav-item"><a class="nav-link" href="admin.php">Admin</a></li>';
+echo '<li class="nav-item"><a class="nav-link" href="logout.php">Log out</a></li>';
+
+} else {
+
+echo '<li class="nav-item"><a class="nav-link" href="login.php">Log in/Register</a></li>';
+
+}
+
+?>
+
     </ul>
     
     <form class="form-inline my-2 my-lg-0">

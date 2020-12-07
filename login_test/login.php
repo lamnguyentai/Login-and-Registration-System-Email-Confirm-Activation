@@ -1,16 +1,27 @@
 <?php include "includes/doctype.php"; ?>
-        <title>ログイン</title>
-<?php include "includes/header.php"; ?>
 
+
+        <title>ログイン</title>
+<?php include "includes/header1.php"; ?>
+<?php 
+	
+	if(logged_in()){
+
+		redirect("admin.php");
+	}
+	    
+?>
 
 
 <?php include "includes/nav.php"; ?>
     <div class="container">
-      
+
+    <?php display_message(); ?>
+   <?php validate_user_login(); ?>
       
         <div class="row">
 			<div class="col-md-5 mx-auto">
-				<div class="myform form mt-4">
+				<div class="myform form mt-5">
 					 <div class="logo mb-3">
 						 <div class="col-md-12 text-center">
 							<h1>Login</h1>
@@ -31,8 +42,8 @@
                               状態を記憶する
                             </label>
                           </div>
-                           <div class="col-md-12 text-center ">
-                              <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">ログイン</button>
+                           <div class="col-md-12 text-center">
+                              <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="btn btn-block mybtn btn-primary tx-tfm" value="ログイン">
                            </div>
                            <div class="col-md-12 ">
                               <div class="login-or">
@@ -62,37 +73,27 @@
       </div>   
          
 	<script type="text/javascript">
-	
-
-
-  
          $(function() {
            $("form[name='login']").validate({
              rules: {
-               
                email: {
                  required: true,
                  email: true
                },
-               password: {
-                 required: true,
-                 
-               }
+               password: "required",
              },
               messages: {
-               email: "メールのパターンを正しく入力してください",
-              
-               password: {
-                 required: "パスワードを入力してください",
-                
-               }
+                 email: {
+                   email: "メールのパターンを正しく入力してください",
+                   required: "メールアドレスを入力してください"
+              },
+               password: "パスワードを入力してください",
+           },
                
-             },
              submitHandler: function(form) {
                form.submit();
              }
            });
          });
     </script>
-    </body>
-    </html>
+<?php include "includes/footer.php"; ?>
